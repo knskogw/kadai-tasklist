@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
     <h1>新規タスク追加ページ</h1>
 
     <div class="row">
