@@ -2,7 +2,7 @@
 
 @section('content')
 
-    
+    @if (Auth::check())
     <h1>id: {{ $task->id }} の編集ページ</h1>
 
     <div class="row">
@@ -24,5 +24,5 @@
             {!! Form::close() !!}
         </div>
     </div>
-
+    @endif
 @endsection

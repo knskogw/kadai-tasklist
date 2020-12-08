@@ -3,7 +3,7 @@
 @section('content')
     {{-- lesson14 --}}
     @if (Auth::check())
-        {{ Auth::user()->name }}
+        @include('tasks.index')
        
     @else
     {{-- ↑ --}}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    
+    @if (Auth::check())
     <h1>新規タスク追加ページ</h1>
 
     <div class="row">
@@ -23,4 +23,5 @@
             {!! Form::close() !!}
         </div>
     </div>
+    @endif
 @endsection
