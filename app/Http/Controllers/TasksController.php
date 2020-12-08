@@ -15,8 +15,10 @@ class TasksController extends Controller
         if (\Auth::check()) { // 認証済みの場合
             // 認証済みユーザを取得
             $user = \Auth::user();
+          
             // ユーザの投稿の一覧を作成日時の降順で取得
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            
             
             $data = [
             'user' => $user,
@@ -46,6 +48,8 @@ class TasksController extends Controller
         if (\Auth::check()) { // 認証済みの場合
             // 認証済みユーザを取得
             $user = \Auth::user();
+            
+            
         $task = new Task;
         
         return view('tasks.create', ['task' => $task,]);
@@ -85,14 +89,18 @@ class TasksController extends Controller
         if (\Auth::check()) { // 認証済みの場合
             // 認証済みユーザを取得
             $user = \Auth::user();
-        // idの値でメッセージを検索して取得
-        $task = Task::findOrFail($id);
-
-        // メッセージ詳細ビューでそれを表示
-        return view('tasks.show', [
-            'task' => $task,
-        ]);
+            // idの値でメッセージを検索して取得
+            $task = Task::findOrFail($id);
+                if($user->id == $task->user_id){
+                    return view('tasks.show', [
+                        'task' => $task,
+                   ]);
+                }
+            
         }
+        return redirect('/');
+        
+        // メッセージ詳細ビューでそれを表示
     }
 
     
@@ -104,12 +112,19 @@ class TasksController extends Controller
             
         // idの値でメッセージを検索して取得
         $task = Task::findOrFail($id);
-
-        // メッセージ編集ビューでそれを表示
-        return view('tasks.edit', [
-            'task' => $task,
-        ]);
+            if($user->id == $task->user_id){
+                return view('tasks.edit', [
+                    'task' => $task,
+               ]);
+            }
+            /**
+            // メッセージ編集ビューでそれを表示
+            return view('tasks.edit', [
+                'task' => $task,
+            ]);
+            **/
         }
+        return redirect('/');
     }
     
     public function update(Request $request, $id)
