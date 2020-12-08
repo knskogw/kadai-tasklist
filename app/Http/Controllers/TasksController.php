@@ -70,7 +70,7 @@ class TasksController extends Controller
         // トップページへリダイレクトさせる
         return redirect('/');
     **/
-        // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
+        //
         $request->user()->tasks()->create([
             'content' => $request->content,
             'status' => $request->status,
@@ -129,8 +129,8 @@ class TasksController extends Controller
                 $task->status = $request->status;
                 $task->save();
                 **/
-                // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
-                $request->user()->tasks()->create([
+                // 
+                $request->user()->tasks()->update([
                     'content' => $request->content,
                     'status' => $request->status,
                 ]);
@@ -148,8 +148,7 @@ class TasksController extends Controller
                 $task = Task::findOrFail($id);
                 
                 $task->delete();
-                // 認証済みユーザ（閲覧者）の投稿として作成（リクエストされた値をもとに作成）
-                
+               
             }
         return redirect('/');
     }
