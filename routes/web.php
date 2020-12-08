@@ -15,9 +15,7 @@ Route::get('/', 'TasksController@index');
 */
 
 /*lesson14追加*/
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'TasksController@index');
 /*↑*/
 
 Route::resource('tasks', 'TasksController');

@@ -4,6 +4,7 @@
     {{-- lesson14 --}}
     @if (Auth::check())
         {{ Auth::user()->name }}
+       
     @else
     {{-- ↑ --}}
     
