@@ -74,7 +74,7 @@ class TasksController extends Controller
         // トップページへリダイレクトさせる
         return redirect('/');
     **/
-        //
+        
         $request->user()->tasks()->create([
             'content' => $request->content,
             'status' => $request->status,
@@ -139,16 +139,17 @@ class TasksController extends Controller
                 $user = \Auth::user();
                     
                 $task = Task::findOrFail($id);
-                /** 
+                 
                 $task->content = $request->content;
                 $task->status = $request->status;
                 $task->save();
-                **/
-                // 
+                
+                /**
                 $request->user()->tasks()->update([
                     'content' => $request->content,
                     'status' => $request->status,
                 ]);
+                **/
             }
         return redirect('/');
     }
